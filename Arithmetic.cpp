@@ -2,20 +2,31 @@
 #include "Arithmetic.h"
 
 #include <opencv2\opencv.hpp>
+#include "opencv2/imgproc/imgproc.hpp"
+#include "opencv2/highgui/highgui.hpp"
+#include <iostream>
 using namespace cv;
+using namespace std;
 
-
+//全局变量
 Mat Arithmetic_Src;
+
+//Sobel
 int alpha;
 int beta;
 int gamma;
 
+//Laplacian
 int _size = 0;
 int color = 0;
 int kernel_size = 3;
 int ddepth = CV_16S;
 
+//Canny
 int lowThreshold;
+
+//HoughLines
+
 
 
 Arithmetic::Arithmetic(Mat _src)
@@ -23,6 +34,7 @@ Arithmetic::Arithmetic(Mat _src)
 	Arithmetic_Src = _src;
 }
 
+//Sobel
 void Sobel_callback(int, void *) {
 	Mat grad_x, grad_y;
 	Mat abs_grad_x, abs_grad_y;
@@ -45,7 +57,6 @@ void Sobel_callback(int, void *) {
 	addWeighted(abs_grad_x, a, abs_grad_y,b, gamma, grad);
 	imshow("Sobel处理图", grad);
 }
-
 void Arithmetic::Arithmetic_Sobel() {
 	namedWindow("Sobel算法参数控制器", 0);
 	namedWindow("Sobel处理图", 0);
@@ -55,6 +66,7 @@ void Arithmetic::Arithmetic_Sobel() {
 }
 
 
+//Laplacian
 void Laplacian_callback(int, void *)
 {
 	if (_size % 2 == 0)
@@ -70,7 +82,6 @@ void Laplacian_callback(int, void *)
 	convertScaleAbs(dst3, dst3);
 	imshow("Laplacian处理图", dst3);
 }
-
 void Arithmetic::Arithmetic_Laplacian() {
 	
 	namedWindow("Laplacian算法参数控制器",0);
@@ -82,6 +93,7 @@ void Arithmetic::Arithmetic_Laplacian() {
 }
 
 
+//Canny
 void Canny_callback(int, void *) {
 	Mat src_gray;
 	Mat detected_edges;
@@ -107,6 +119,37 @@ void Arithmetic::Arithmetic_Canny()
 	createTrackbar("Min Threshold:", "Canny边缘", &lowThreshold, 200, Canny_callback);
 
 }
+
+
+//HoughLines
+void Arithmetic::Arithmetic_HoughLines(){
+	Mat dst;
+	Mat dst2;
+	Mat ccdst;
+
+	Canny(Arithmetic_Src, dst, 50, 200, 3);
+
+	cvtColor(dst, dst2, CV_GRAY2BGR);
+
+	vector<Vec2f> lines;
+	HoughLines(dst, lines, 1, CV_PI / 180, 100, 0,0);
+	for (size_t i = 0; i < lines.size(); i++)
+	{
+		float rho = lines[i][0], theta = lines[i][1];
+		Point pt1, pt2;
+		double a = cos(theta), b = sin(theta);
+		double x0 = a * rho, y0 = b * rho;
+		pt1.x = cvRound(x0 + 1000 * (-b));
+		pt1.y = cvRound(y0 + 1000 * (a));
+		pt2.x = cvRound(x0 - 1000 * (-b));
+		pt2.y = cvRound(y0 - 1000 * (a));
+		//line(cdst, pt1, pt2, Scalar(0, 0, 255), 3, CV_AA);
+		line(ccdst, pt1, pt2, Scalar(55, 100, 195), 1, CV_AA);
+	}
+	imshow("houghlines", ccdst);
+}
+
+
 
 Arithmetic::~Arithmetic()
 {

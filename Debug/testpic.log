@@ -1,0 +1,8 @@
+﻿  stdafx.cpp
+  testpic.cpp
+  Class_Fileter.cpp
+  Class_Eroding_and_Dilating.cpp
+  Blur.cpp
+  Arithmetic.cpp
+  正在生成代码...
+opencv_world340d.lib(opencv_world340d.dll) : fatal error LNK1112: 模块计算机类型“x64”与目标计算机类型“x86”冲突
