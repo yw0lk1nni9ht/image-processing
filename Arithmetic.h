@@ -11,7 +11,7 @@ public:
 	void Arithmetic_Laplacian();	//算子
 	void Arithmetic_Canny();	//边缘
 	void Arithmetic_HoughLines();	//标准霍夫线变换
-	//void Arithmetic_HoughLinesP();	//统计概率霍夫线变换
+	void Arithmetic_HoughLinesP();	//统计概率霍夫线变换
 
 	~Arithmetic();
 };

@@ -129,10 +129,10 @@ void Arithmetic::Arithmetic_HoughLines(){
 
 	Canny(Arithmetic_Src, dst, 50, 200, 3);
 
-	cvtColor(dst, dst2, CV_GRAY2BGR);
+	cvtColor(dst, ccdst, CV_GRAY2BGR);
 
 	vector<Vec2f> lines;
-	HoughLines(dst, lines, 1, CV_PI / 180, 100, 0,0);
+	HoughLines(dst, lines, 1, CV_PI / 180, 150, 0,0);
 	for (size_t i = 0; i < lines.size(); i++)
 	{
 		float rho = lines[i][0], theta = lines[i][1];
@@ -143,13 +143,32 @@ void Arithmetic::Arithmetic_HoughLines(){
 		pt1.y = cvRound(y0 + 1000 * (a));
 		pt2.x = cvRound(x0 - 1000 * (-b));
 		pt2.y = cvRound(y0 - 1000 * (a));
-		//line(cdst, pt1, pt2, Scalar(0, 0, 255), 3, CV_AA);
-		line(ccdst, pt1, pt2, Scalar(55, 100, 195), 1, CV_AA);
+		line(ccdst, pt1, pt2, Scalar(0, 0, 255), 3, CV_AA);
+		//line(ccdst, pt1, pt2, Scalar(55, 100, 195), 1, CV_AA);
 	}
 	imshow("houghlines", ccdst);
 }
 
+//HoughLines
+void Arithmetic::Arithmetic_HoughLinesP() {
+	Mat dst;
+	Mat dst2;
+	Mat ccdst;
 
+	Canny(Arithmetic_Src, dst, 50, 200, 3);
+
+	cvtColor(dst, ccdst, CV_GRAY2BGR);
+
+	vector<Vec4i> lines;
+	HoughLinesP(dst, lines, 1, CV_PI / 180, 150, 50, 10);
+	for (size_t i = 0; i < lines.size(); i++)
+	{
+		Vec4i l = lines[i];
+		line(ccdst, Point(l[0], l[1]), Point(l[2], l[3]), Scalar(0, 0, 255), 3, CV_AA);
+		//line(ccdst, pt1, pt2, Scalar(55, 100, 195), 1, CV_AA);
+	}
+	imshow("houghlinesP", ccdst);
+}
 
 Arithmetic::~Arithmetic()
 {
