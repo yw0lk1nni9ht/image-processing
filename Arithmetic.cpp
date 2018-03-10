@@ -8,6 +8,17 @@
 using namespace cv;
 using namespace std;
 
+
+
+/*************************************
+//									//
+//									//
+//			图像算法					//
+//									//
+//									//
+*************************************/
+
+
 //全局变量
 Mat Arithmetic_Src;
 
@@ -168,7 +179,12 @@ void Arithmetic::Arithmetic_HoughLinesP() {
 		//line(ccdst, pt1, pt2, Scalar(55, 100, 195), 1, CV_AA);
 	}
 	imshow("houghlinesP", ccdst);
+
 }
+
+
+
+
 
 Arithmetic::~Arithmetic()
 {
