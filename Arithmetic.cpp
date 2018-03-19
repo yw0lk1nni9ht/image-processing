@@ -55,16 +55,10 @@ void Sobel_callback(int, void *) {
 	Sobel(Arithmetic_Src, grad_x, ddepth, 1, 0, 3);
 	convertScaleAbs(grad_x, abs_grad_x);
 
-	namedWindow("x", 0);
-	imshow("x",abs_grad_x);
-
 	/// 求Y方向梯度
 	//Scharr( src_gray, grad_y, ddepth, 0, 1, scale, delta, BORDER_DEFAULT );
-	Sobel(Arithmetic_Src, grad_y, ddepth, 0, 1, 3); 
-
+	Sobel(Arithmetic_Src, grad_y, ddepth, 0, 1, 3);
 	convertScaleAbs(grad_y, abs_grad_y);
-	namedWindow("y", 0);
-	imshow("y",abs_grad_y);
 
 	/// 合并梯度(近似)
 	//addWeighted(abs_grad_x, 0.5, abs_grad_y, 0.5, 0, grad);
@@ -90,10 +84,6 @@ void Laplacian_callback(int, void *)
 	{
 		_size++;
 	}
-	if (ddepth == 0 || ddepth == 1)
-	{
-		return;
-	}
 	Mat dst;
 	Mat dst2;
 	Mat dst3;
@@ -109,7 +99,7 @@ void Arithmetic::Arithmetic_Laplacian() {
 	namedWindow("Laplacian处理图", 0);
 	createTrackbar("高斯size", "Laplacian算法参数控制器", &_size, 50, Laplacian_callback);
 	//createTrackbar("灰度为7", "Sobel算法参数控制器", &color, 143, Sobel_callback);	
-	createTrackbar("内核深度", "Laplacian算法参数控制器", &ddepth, 3, Laplacian_callback);
+	//createTrackbar("内核深度", "Sobel算法参数控制器", &ddepth, 50, Sobel_callback);
 	//createTrackbar("算子内核大小", "Sobel算法参数控制器", &kernel_size, 50, Sobel_callback);
 }
 
@@ -167,7 +157,6 @@ void Arithmetic::Arithmetic_HoughLines(){
 		line(ccdst, pt1, pt2, Scalar(0, 0, 255), 3, CV_AA);
 		//line(ccdst, pt1, pt2, Scalar(55, 100, 195), 1, CV_AA);
 	}
-	namedWindow("houghlines ", 0);
 	imshow("houghlines", ccdst);
 }
 

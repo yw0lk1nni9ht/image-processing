@@ -153,7 +153,6 @@
     <ClInclude Include="Blur.h" />
     <ClInclude Include="Class_Eroding_and_Dilating.h" />
     <ClInclude Include="Class_Fileter.h" />
-    <ClInclude Include="Contour.h" />
     <ClInclude Include="Histogram.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -163,7 +162,6 @@
     <ClCompile Include="Blur.cpp" />
     <ClCompile Include="Class_Eroding_and_Dilating.cpp" />
     <ClCompile Include="Class_Fileter.cpp" />
-    <ClCompile Include="Contour.cpp" />
     <ClCompile Include="Histogram.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
