@@ -10,6 +10,10 @@ class Contour
 public:
 	Contour(Mat _src);
 	~Contour();
+	//Æ¥Åä£¬Èë²Î£ºÄ£°åÍ¼
 	void Match(Mat temp);
+
+	//Ñ°ÕÒÂÖÀª
+	void FindContour();
 };
 
