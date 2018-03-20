@@ -33,12 +33,6 @@
     <ClInclude Include="Arithmetic.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Histogram.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Contour.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -57,12 +51,6 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Arithmetic.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Histogram.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Contour.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
