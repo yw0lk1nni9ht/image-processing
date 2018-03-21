@@ -157,6 +157,7 @@
     <ClInclude Include="Histogram.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="集成测试.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Arithmetic.cpp" />
@@ -172,6 +173,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="testpic.cpp" />
+    <ClCompile Include="集成测试.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
