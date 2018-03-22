@@ -18,8 +18,23 @@ using namespace cv;
 class 集成测试
 {
 public:
-	集成测试();
+	//获取票号区域并返回矩形
+	集成测试(Mat _src);
+		
+	//一系列处理获取号码框
+	void pichandle(Mat handle_src);
+	//号码框过滤并排序
+	void clean();
+	
+
+	Rect Need;		//区域的框
+	vector<Rect> saved_contours;		//存放所需要的框形
+
+
+
+
 	~集成测试();
-	Rect Need;
+	
+	
 };
 

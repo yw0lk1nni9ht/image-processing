@@ -1,8 +1,11 @@
 #include "stdafx.h"
 #include "集成测试.h"
 
+Mat test_src2;
 
-集成测试::集成测试()
+
+//获取票号的区域框
+集成测试::集成测试(Mat _src)
 {
 	/*第一种方法*/
 	//Mat dst;
@@ -15,11 +18,11 @@
 	//medianBlur(dst, dst2, 5);
 	////GaussianBlur(dst, dst, Size(43, 43), 0, 0);
 	//imshow("1.2图", dst2);
-
+	
 
 	/*第二种方法*/
-	Mat test_src2 = imread("piaohao.jpg", 1);
-	//imshow("2.原图", test_src2);
+	//test_src2 = imread("piaohao2.jpg", 1);
+	test_src2 = _src;
 	Mat test_dst;
 	
 	//算法		
@@ -29,13 +32,13 @@
 	cvtColor(test_dst, test_dst2, 7);
 	Laplacian(test_dst2, test_dst3, 2, 3);
 	convertScaleAbs(test_dst3, test_dst);
-	imshow("2.1高斯图", test_dst);
+	//imshow("2.1高斯图", test_dst);
 
 	//二值，黑白
 	//2.二值黑白图像
 	threshold(test_dst, test_src2, 10, 255, THRESH_BINARY);
 	//threshold(test_dst, test_src2, 10, 255, THRESH_BINARY_INV);
-	imshow("2.2二值图", test_src2);
+	//imshow("2.2二值图", test_src2);
 	
 	////降噪
 	//blur(test_src2, test_dst, Size(49, 49), Point(-1, -1));
@@ -46,11 +49,7 @@
 	//3.凸出所需区域
 	Mat kernel = getStructuringElement(0, Size(13, 13));
 	dilate(test_src2, test_src2, kernel);
-	imshow("2.4膨胀", test_src2);
-
-	//contourArea();
-	RotatedRect a;
-	//a = minAreaRect(test_src2);
+	//imshow("2.4膨胀", test_src2);
 
 	//查找轮廓
 	vector<vector<Point> > contours;
@@ -58,7 +57,7 @@
 	int thresh = 10;
 	/// 用Canny算子检测边缘
 	Canny(test_src2, test_dst, thresh, thresh * 2, 3);
-	imshow("Canny算子", test_dst);
+	//imshow("Canny算子", test_dst);
 	/// 寻找轮廓
 	findContours(test_dst, contours, hierarchy, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, Point(0, 0));
 	
@@ -73,7 +72,100 @@
 		}
 	}
 	rectangle(test_dst, this->Need, Scalar(148, 0, 211));
-	imshow("drawing", test_dst);
+	//imshow("drawing", test_dst);
+}
+
+//对裁剪后图片的一列处理，获取到数字框
+void 集成测试::pichandle(Mat handle_src) {
+	Mat save = handle_src.clone();
+
+	//1.初始话处理
+	cvtColor(handle_src, handle_src, 7);	//转成灰度
+	threshold(handle_src, handle_src, 130, 255, THRESH_BINARY);		//二值化
+	//imshow("1二值", handle_src);
+
+
+	//2.去背景干扰
+	Mat kernel = getStructuringElement(0, Size(3, 3));	//膨胀
+	dilate(handle_src, handle_src, kernel);
+	//imshow("2膨胀", handle_src);
+	Mat kernel2 = getStructuringElement(0, Size(4, 4));
+	erode(handle_src, handle_src, kernel2);
+	//imshow("2腐蚀", handle_src);
+
+	Mat kernel3 = getStructuringElement(0, Size(5, 5));	//膨胀
+	dilate(handle_src, handle_src, kernel3);
+	//imshow("3膨胀", handle_src);
+	Mat kernel4 = getStructuringElement(0, Size(3, 3));
+	erode(handle_src, handle_src, kernel4);
+	//imshow("3腐蚀", handle_src);
+	
+	Mat canny_output;
+	vector<vector<Point> > contours;
+	vector<Vec4i> hierarchy;
+	RNG rng(12345);
+	 //用Canny算子检测边缘
+	Canny(handle_src, canny_output, 10, 10 * 2, 3);
+	//imshow("Canny算子", canny_output);
+	 //寻找轮廓
+	findContours(canny_output, contours, hierarchy, RETR_EXTERNAL, CV_CHAIN_APPROX_SIMPLE, Point(0, 0));
+
+	for (int i = 0; i < contours.size() - 1; i++) {
+		Rect a = boundingRect(contours[i]);
+		if ((a.width * a.height) > 400 && (a.width * a.height)<1800)
+		{
+			a.x = a.x - 5;
+			a.y = a.y - 5;
+			a.width = a.width + 10;
+			a.height = a.height + 10;
+			rectangle(save, a, Scalar(255, 64, 64));
+			saved_contours.push_back(a);
+		}
+	}
+	
+	imshow("Contours", save);
+	/// 绘出轮廓
+
+
+
+
+
+}
+
+//号码框过滤并排序
+void 集成测试::clean() {
+	//根据x坐标，排序
+	
+	int _contours = saved_contours.size();
+	
+	for (int i = 0; i < _contours; i++) 
+	{
+		int saveindex = i;
+		int min = saved_contours[i].x;
+		for (int j = i + 1; j < _contours; j++)
+		{
+			if (min > saved_contours[j].x) 
+			{
+				min = saved_contours[j].x;
+				saveindex = j;
+			}
+		}
+		if (saveindex != i) {
+			Rect temp = saved_contours[i];
+			saved_contours[i] = saved_contours[saveindex];
+			saved_contours[saveindex] = temp;
+		}
+	}
+	//票号8个
+	if (saved_contours.size() == 8) {
+
+	}
+	else if (saved_contours.size() > 8) {
+		while (saved_contours.size() > 8) {
+			saved_contours.pop_back();
+		}
+	}
+
 }
 
 
