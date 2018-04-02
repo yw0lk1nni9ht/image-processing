@@ -3,3 +3,6 @@
 ################################################################################
 
 /.vs/testpic/v15/Browse.VC.opendb
+/Feature.cpp
+/Feature.h
+/x64/Debug/Feature.obj
