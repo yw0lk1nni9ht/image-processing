@@ -76,10 +76,20 @@ void Feature::MatchFeature() {
 
 	//获取优秀匹配点
 	sort(match.begin(), match.end());  //筛选匹配点  
-	for (int i = 0; i < 480; i++)
+	for (int i = 0; i < 500; i++)
 	{
 		GoodMatchePoints.push_back(match[i]);
 	}
+	float k = 0;
+	for (int num = 0; num < GoodMatchePoints.size(); num++) {
+		if (GoodMatchePoints[num].distance < 100)
+		{
+			k += 1;
+		}
+	}
+	cout << k / GoodMatchePoints.size();
+
+
 	//ratio = 0. 4：对于准确度要求高的匹配；
 	//ratio = 0. 6：对于匹配点数目要求比较多的匹配；
 	//ratio = 0. 5：一般情况下。
