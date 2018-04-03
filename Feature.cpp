@@ -76,8 +76,6 @@ void Feature::MatchFeature() {
 
 	//获取优秀匹配点
 	sort(match.begin(), match.end());  //筛选匹配点  
-	//int ptsPairs = std::min(50, (int)(match.size() * 0.15));
-	//cout << ptsPairs << endl;
 	for (int i = 0; i < 480; i++)
 	{
 		GoodMatchePoints.push_back(match[i]);
