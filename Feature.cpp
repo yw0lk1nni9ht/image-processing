@@ -36,7 +36,7 @@ Feature::Feature()
 }
 
 void Feature::FindFeature() {
-	//Mat src22 = imread("单字\\第12张：0.jpg", CV_LOAD_IMAGE_GRAYSCALE);
+	//Mat src22 = imread("单字\\第11张：0.jpg", CV_LOAD_IMAGE_GRAYSCALE);
 	Mat src22 = imread("match.jpg", CV_LOAD_IMAGE_GRAYSCALE);
 	namedWindow("src", 0);
 	imshow("src", src22);
@@ -54,8 +54,8 @@ void Feature::FindFeature() {
 }
 
 void Feature::MatchFeature() {
-	Mat src_1 = imread("piaohao.jpg", CV_LOAD_IMAGE_GRAYSCALE);
-	Mat src_2 = imread("match2.jpg", CV_LOAD_IMAGE_GRAYSCALE);
+	Mat src_1 = imread("单字\\第11张：0.jpg", CV_LOAD_IMAGE_GRAYSCALE);
+	Mat src_2 = imread("模板\\6\\0.jpg", CV_LOAD_IMAGE_GRAYSCALE);
 	vector<KeyPoint> keypoints_1, keypoints_2;
 	Mat descriptors_1, descriptors_2;
 	vector<DMatch>match;
@@ -63,12 +63,14 @@ void Feature::MatchFeature() {
 	vector<DMatch>GoodMatchePoints;
 	Mat result;
 	
-	Ptr<AKAZE> detector = AKAZE::create();
+	Ptr<FeatureDetector> detector = Ptr<FeatureDetector>();
+	detector = KAZE::create();
 	detector->detect(src_1, keypoints_1);
 	detector->detect(src_2, keypoints_2);
+	//Ptr<BRISK>detector2 = BRISK::create();
 	detector->compute(src_1, keypoints_1, descriptors_1);
 	detector->compute(src_2, keypoints_2, descriptors_2);
-	
+	//
 	Ptr<BFMatcher> bfmatcher = BFMatcher::create();
 	bfmatcher->match(descriptors_1, descriptors_2, match);
 	//bfmatcher->knnMatch(descriptors_1, descriptors_2, match,3);
@@ -76,9 +78,10 @@ void Feature::MatchFeature() {
 
 	//获取优秀匹配点
 	sort(match.begin(), match.end());  //筛选匹配点  
-	for (int i = 0; i < 500; i++)
+	for (int i = 0; i < match.size(); i++)
 	{
 		GoodMatchePoints.push_back(match[i]);
+		drawMatches(src_1, keypoints_1, src_2, keypoints_2, GoodMatchePoints, result);
 	}
 	float k = 0;
 	for (int num = 0; num < GoodMatchePoints.size(); num++) {
@@ -102,6 +105,7 @@ void Feature::MatchFeature() {
 	}
 */
 	drawMatches(src_1, keypoints_1, src_2, keypoints_2, GoodMatchePoints, result);
+	namedWindow("匹配结果图", 0);
 	imshow("匹配结果图", result);
 }
 
