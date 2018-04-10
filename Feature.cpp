@@ -82,10 +82,11 @@ void Feature::MatchFeature() {
 	{
 		GoodMatchePoints.push_back(match[i]);
 		drawMatches(src_1, keypoints_1, src_2, keypoints_2, GoodMatchePoints, result);
+		GoodMatchePoints.clear();
 	}
 	float k = 0;
 	for (int num = 0; num < GoodMatchePoints.size(); num++) {
-		if (GoodMatchePoints[num].distance < 100)
+		if (GoodMatchePoints[num].distance < 0.5)
 		{
 			k += 1;
 		}
