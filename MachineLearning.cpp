@@ -72,10 +72,8 @@ void MachineLearning::SVM_test() {
 	//正样本
 	for (int i = 0; i < plus_num; i++) {
 		Mat tmp = imread("模板\\0\\" + to_string(i) + ".jpg", 0);
-		
 		tmp.rows = _rows;
 		tmp.cols = _cols;
-		
 		//tmp.reshape(1, 1);
 		/*Mat _tmp = targetData.rowRange(i, i + 1);
 		_tmp = tmp.reshape(1, 1);*/
@@ -89,7 +87,7 @@ void MachineLearning::SVM_test() {
 
 	//负样本
 	for (int i = 1; i < 10; i++) {
-		for (int j = 0; j < 4; j++) {
+		for (int j = 0; j < 18; j++) {
 			Mat tmp = imread("模板\\" + to_string(i) + "\\" + to_string(j) +".jpg", 0);
 			tmp.rows = _rows;
 			tmp.cols = _cols;
@@ -111,49 +109,98 @@ void MachineLearning::SVM_test() {
 		train_label.at<int>(i, 0) = 0;
 	}*/
 
-
+	//Ptr<SVM>svm = Algorithm::load<SVM>("svm.xml");
 	Ptr<SVM> svm = SVM::create();
 	svm->setType(100);	//100-104
 	svm->setKernel(SVM::LINEAR);
 	svm->setTermCriteria(TermCriteria(TermCriteria::MAX_ITER, 100, 1e-6));
-	
 	// 训练分类器
 	Ptr<TrainData> traindata = TrainData::create(train_data, ROW_SAMPLE, train_label);
 	//svm->train(traindata);
-	svm->trainAuto(traindata, 10);
+	svm->trainAuto(traindata);
 	svm->save("svm.xml");
 
-	
-	Mat sampleMat = imread("单字\\第11张：0.jpg", 0);
-	sampleMat.rows = _rows;
-	sampleMat.cols = _cols;
+	#pragma region 10张图
 	Mat test;
-	sampleMat.convertTo(test, CV_32FC1);
-	test = test.reshape(1, 1);
-	float response = svm->predict(test);  //进行预测，返回1或-1,返回类型为float
+	Mat sampleMat_6 = imread("单字\\第11张：0.jpg", 0);
+	sampleMat_6.rows = _rows;
+	sampleMat_6.cols = _cols;
+	sampleMat_6.convertTo(sampleMat_6, CV_32FC1);
+	sampleMat_6 = sampleMat_6.reshape(1, 1);
+	float response = svm->predict(sampleMat_6);  //进行预测，返回1或-1,返回类型为float
 
-	Mat sampleMat2 = imread("单字\\第17张：5.jpg", CV_32FC1);
+	Mat sampleMat_7 = imread("单字\\第11张：1.jpg", 0);
+	sampleMat_7.rows = _rows;
+	sampleMat_7.cols = _cols;
+	sampleMat_7.convertTo(sampleMat_7, CV_32FC1);
+	sampleMat_7 = sampleMat_7.reshape(1, 1);
+	response = svm->predict(sampleMat_7);  //进行预测，返回1或-1,返回类型为float
+	
+	Mat sampleMat_8 = imread("单字\\第11张：2.jpg", 0);
+	sampleMat_8.rows = _rows;
+	sampleMat_8.cols = _cols;
+	sampleMat_8.convertTo(sampleMat_8, CV_32FC1);
+	sampleMat_8 = sampleMat_8.reshape(1, 1);
+	response = svm->predict(sampleMat_8);  //进行预测，返回1或-1,返回类型为float
+	
+	Mat sampleMat_9 = imread("单字\\第11张：3.jpg", 0);
+	sampleMat_9.rows = _rows;
+	sampleMat_9.cols = _cols;
+	sampleMat_9.convertTo(sampleMat_9, CV_32FC1);
+	sampleMat_9 = sampleMat_9.reshape(1, 1);
+	response = svm->predict(sampleMat_9);  //进行预测，返回1或-1,返回类型为float
+
+	Mat sampleMat_1 = imread("单字\\第11张：4.jpg", 0);
+	sampleMat_1.rows = _rows;
+	sampleMat_1.cols = _cols;
+	sampleMat_1.convertTo(sampleMat_1, CV_32FC1);
+	sampleMat_1 = sampleMat_1.reshape(1, 1);
+	response = svm->predict(sampleMat_1);  //进行预测，返回1或-1,返回类型为float
+
+	Mat sampleMat_0 = imread("单字\\第11张：5.jpg", 0);
+	sampleMat_0.rows = _rows;
+	sampleMat_0.cols = _cols;
+	sampleMat_0.convertTo(sampleMat_0, CV_32FC1);
+	sampleMat_0 = sampleMat_0.reshape(1, 1);
+	response = svm->predict(sampleMat_0);  //进行预测，返回1或-1,返回类型为float
+
+	Mat sampleMat_2 = imread("单字\\第12张：7.jpg", 0);
+	sampleMat_2.rows = _rows;
+	sampleMat_2.cols = _cols;
+	sampleMat_2.convertTo(sampleMat_2, CV_32FC1);
+	sampleMat_2 = sampleMat_2.reshape(1, 1);
+	response = svm->predict(sampleMat_2);  //进行预测，返回1或-1,返回类型为float
+
+	Mat sampleMat_3 = imread("单字\\第13张：7.jpg", 0);
+	sampleMat_3.rows = _rows;
+	sampleMat_3.cols = _cols;
+	sampleMat_3.convertTo(sampleMat_3, CV_32FC1);
+	sampleMat_3 = sampleMat_3.reshape(1, 1);
+	response = svm->predict(sampleMat_3);  //进行预测，返回1或-1,返回类型为float
+
+	Mat sampleMat_4 = imread("单字\\第14张：7.jpg", 0);
+	sampleMat_4.rows = _rows;
+	sampleMat_4.cols = _cols;
+	sampleMat_4.convertTo(sampleMat_4, CV_32FC1);
+	sampleMat_4 = sampleMat_4.reshape(1, 1);
+	response = svm->predict(sampleMat_4);  //进行预测，返回1或-1,返回类型为float
+
+	Mat sampleMat_5 = imread("单字\\第15张：7.jpg", 0);
+	sampleMat_5.rows = _rows;
+	sampleMat_5.cols = _cols;
+	sampleMat_5.convertTo(sampleMat_5, CV_32FC1);
+	sampleMat_5 = sampleMat_5.reshape(1, 1);
+	response = svm->predict(sampleMat_5);  //进行预测，返回1或-1,返回类型为float
+
+#pragma endregion
+
+
+	Mat sampleMat2 = imread("单字\\第17张：5.jpg", 0);
 	sampleMat2.rows = _rows;
 	sampleMat2.cols = _cols;
-	sampleMat.convertTo(test, CV_32FC1);
-	test = test.reshape(1, 1);
-	float response2 = svm->predict(test);  //进行预测，返回1或-1,返回类型为float
-
-	Mat sampleMat3 = imread("单字\\第12张：5.jpg", CV_32FC1);
-	sampleMat3.rows = _rows;
-	sampleMat3.cols = _cols;
-	sampleMat3 = sampleMat.reshape(1, 1);
-	test = Mat(sampleMat3.rows, sampleMat3.cols, CV_32F);
-	sampleMat3.convertTo(test, CV_32F);
-	float response3 = svm->predict(test);  //进行预测，返回1或-1,返回类型为float
-
-	Mat sampleMat4 = imread("单字\\第13张：5.jpg", CV_32FC1);
-	sampleMat4.rows = _rows;
-	sampleMat4.cols = _cols;
-	sampleMat4 = sampleMat.reshape(1, 1);
-	test = Mat(sampleMat4.rows, sampleMat2.cols, CV_32F);
-	sampleMat4.convertTo(test, CV_32F);
-	float response4 = svm->predict(test);  //进行预测，返回1或-1,返回类型为float
+	sampleMat2.convertTo(sampleMat2, CV_32FC1);
+	sampleMat2 = sampleMat2.reshape(1, 1);
+	float response2 = svm->predict(sampleMat2);  //进行预测，返回1或-1,返回类型为float
 }
 
 

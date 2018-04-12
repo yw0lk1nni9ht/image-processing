@@ -79,6 +79,8 @@ Mat test_src2;
 void 集成测试::pichandle(Mat handle_src) {
 	Mat save = handle_src.clone();
 
+	
+
 	//1.初始话处理
 	cvtColor(handle_src, handle_src, 7);	//转成灰度
 	threshold(handle_src, handle_src, 130, 255, THRESH_BINARY);		//二值化
@@ -99,7 +101,7 @@ void 集成测试::pichandle(Mat handle_src) {
 	Mat kernel4 = getStructuringElement(0, Size(3, 3));
 	erode(handle_src, handle_src, kernel4);
 	//imshow("3腐蚀", handle_src);
-	
+
 	Mat canny_output;
 	vector<vector<Point> > contours;
 	vector<Vec4i> hierarchy;
@@ -112,7 +114,7 @@ void 集成测试::pichandle(Mat handle_src) {
 
 	for (int i = 0; i < contours.size() - 1; i++) {
 		Rect a = boundingRect(contours[i]);
-		if ((a.width * a.height) > 400 && (a.width * a.height)<1800)
+		if ((a.width * a.height) > 500 && (a.width * a.height)<1800)
 		{
 			a.x = a.x - 5;
 			a.y = a.y - 5;
