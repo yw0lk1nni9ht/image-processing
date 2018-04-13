@@ -81,26 +81,34 @@ void 集成测试::pichandle(Mat handle_src) {
 
 	
 
-	//1.初始话处理
+#pragma region 1.初始化处理
+
 	cvtColor(handle_src, handle_src, 7);	//转成灰度
 	threshold(handle_src, handle_src, 130, 255, THRESH_BINARY);		//二值化
 	//imshow("1二值", handle_src);
 
+	#pragma endregion
 
-	//2.去背景干扰
+
+#pragma region 2.去背景干扰 ，膨胀腐蚀使票号更明显
+
 	Mat kernel = getStructuringElement(0, Size(3, 3));	//膨胀
 	dilate(handle_src, handle_src, kernel);
 	//imshow("2膨胀", handle_src);
-	Mat kernel2 = getStructuringElement(0, Size(4, 4));
+	Mat kernel2 = getStructuringElement(0, Size(4, 4));	//腐蚀
 	erode(handle_src, handle_src, kernel2);
 	//imshow("2腐蚀", handle_src);
-
 	Mat kernel3 = getStructuringElement(0, Size(5, 5));	//膨胀
 	dilate(handle_src, handle_src, kernel3);
 	//imshow("3膨胀", handle_src);
-	Mat kernel4 = getStructuringElement(0, Size(3, 3));
+	Mat kernel4 = getStructuringElement(0, Size(3, 3));	//腐蚀
 	erode(handle_src, handle_src, kernel4);
-	//imshow("3腐蚀", handle_src);
+	////imshow("3腐蚀", handle_src);
+
+	#pragma endregion
+
+
+#pragma region 3.检测边缘
 
 	Mat canny_output;
 	vector<vector<Point> > contours;
@@ -109,25 +117,43 @@ void 集成测试::pichandle(Mat handle_src) {
 	 //用Canny算子检测边缘
 	Canny(handle_src, canny_output, 10, 10 * 2, 3);
 	//imshow("Canny算子", canny_output);
-	 //寻找轮廓
+
+	#pragma endregion
+
+	 
+#pragma region 4.寻找轮廓
+	 
 	findContours(canny_output, contours, hierarchy, RETR_EXTERNAL, CV_CHAIN_APPROX_SIMPLE, Point(0, 0));
 
-	for (int i = 0; i < contours.size() - 1; i++) {
+	#pragma	endregion
+
+
+#pragma region 5.筛选轮廓
+
+	for (int i = 0; i < contours.size() ; i++) {
 		Rect a = boundingRect(contours[i]);
-		if ((a.width * a.height) > 500 && (a.width * a.height)<1800)
+		if (a.area() > 100)
 		{
-			a.x = a.x - 5;
-			a.y = a.y - 5;
-			a.width = a.width + 10;
-			a.height = a.height + 10;
 			rectangle(save, a, Scalar(255, 64, 64));
 			saved_contours.push_back(a);
 		}
 	}
-	
+
+	//for (int i = 0; i < contours.size() - 1; i++) {
+	//	Rect a = boundingRect(contours[i]);
+	//	if ((a.width * a.height) > 1 && (a.width * a.height)<1800)
+	//	{
+	//		a.x = a.x - 5;
+	//		a.y = a.y - 5;
+	//		a.width = a.width + 10;
+	//		a.height = a.height + 10;
+	//		rectangle(save, a, Scalar(255, 64, 64));
+	//		saved_contours.push_back(a);
+	//	}
+	//}
 	imshow("Contours", save);
 	/// 绘出轮廓
-
+	#pragma endregion 
 
 
 
@@ -136,17 +162,16 @@ void 集成测试::pichandle(Mat handle_src) {
 
 //号码框过滤并排序
 void 集成测试::clean() {
+
 	//根据x坐标，排序
-	
 	int _contours = saved_contours.size();
-	
-	for (int i = 0; i < _contours; i++) 
+	for (int i = 0; i < _contours - 1 ; i++)
 	{
 		int saveindex = i;
 		int min = saved_contours[i].x;
 		for (int j = i + 1; j < _contours; j++)
 		{
-			if (min > saved_contours[j].x) 
+			if (min > saved_contours[j].x)
 			{
 				min = saved_contours[j].x;
 				saveindex = j;
@@ -158,6 +183,23 @@ void 集成测试::clean() {
 			saved_contours[saveindex] = temp;
 		}
 	}
+
+
+	//清除同一数字下多个轮廓的不精确轮廓；只保留最最上角的
+	vector<Rect>::iterator element_to_delete = saved_contours.begin(); 
+	for (int i = 0; i < _contours - 1; i++) {
+		//下一个轮廓的x处于这个轮廓的x范围里，证明不是所需要的下一个轮廓，所以就删除
+		if ((saved_contours[i + 1].x <= saved_contours[i].x + saved_contours[i].width)
+			&& (saved_contours[i + 1].x >= saved_contours[i].x))
+		{
+			element_to_delete + 1 = saved_contours.erase(element_to_delete + 1);
+			_contours--;
+			i--;
+			continue;
+		}
+		element_to_delete++;
+	}
+
 	//票号8个
 	if (saved_contours.size() == 8) {
 
