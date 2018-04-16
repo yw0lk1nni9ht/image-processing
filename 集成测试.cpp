@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "集成测试.h"
 
-Mat test_src2;
+//Mat test_src2;
 
 
 //获取票号的区域框
@@ -22,9 +22,9 @@ Mat test_src2;
 
 	/*第二种方法*/
 	//test_src2 = imread("piaohao2.jpg", 1);
-	test_src2 = _src;
+	Mat test_src2 = _src;
 	Mat test_dst;
-	
+
 	//算法		
 	//1.降噪获取轮廓
 	GaussianBlur(test_src2, test_dst, Size(9, 9), 0, 0);
@@ -33,6 +33,10 @@ Mat test_src2;
 	Laplacian(test_dst2, test_dst3, 2, 3);
 	convertScaleAbs(test_dst3, test_dst);
 	//imshow("2.1高斯图", test_dst);
+
+	//Mat test_dst2, test_dst3;
+	//test_dst2 = test_src2;
+	//cvtColor(test_dst2, test_dst, 7);
 
 	//二值，黑白
 	//2.二值黑白图像
@@ -47,7 +51,7 @@ Mat test_src2;
 
 	//区域分化更明显
 	//3.凸出所需区域
-	Mat kernel = getStructuringElement(0, Size(13, 13));
+	Mat kernel = getStructuringElement(0, Size(20, 20));
 	dilate(test_src2, test_src2, kernel);
 	//imshow("2.4膨胀", test_src2);
 
@@ -189,15 +193,30 @@ void 集成测试::clean() {
 	vector<Rect>::iterator element_to_delete = saved_contours.begin(); 
 	for (int i = 0; i < _contours - 1; i++) {
 		//下一个轮廓的x处于这个轮廓的x范围里，证明不是所需要的下一个轮廓，所以就删除
+		//如果是下半轮廓，把y值设置成上半轮廓的y值
 		if ((saved_contours[i + 1].x <= saved_contours[i].x + saved_contours[i].width)
 			&& (saved_contours[i + 1].x >= saved_contours[i].x))
 		{
+			if (saved_contours[i].y > saved_contours[i + 1].y)
+			{
+				saved_contours[i].y = saved_contours[i + 1].y;
+			}
 			element_to_delete + 1 = saved_contours.erase(element_to_delete + 1);
 			_contours--;
 			i--;
 			continue;
 		}
 		element_to_delete++;
+	}
+
+	//获取轮廓左上角坐标，重绘轮廓大小
+	for (int i = 0; i < _contours; i++) {
+		saved_contours[i].x -= 5;
+		saved_contours[i].y -= 5;
+		saved_contours[i].width = 32;
+		saved_contours[i].height = 50;
+
+
 	}
 
 	//票号8个
@@ -211,6 +230,7 @@ void 集成测试::clean() {
 	}
 
 }
+
 
 
 集成测试::~集成测试()

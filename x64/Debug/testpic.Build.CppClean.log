@@ -4,6 +4,7 @@ c:\users\ywin\source\repos\image-processing\x64\debug\vc141.idb
 c:\users\ywin\source\repos\image-processing\x64\debug\stdafx.obj
 c:\users\ywin\source\repos\image-processing\x64\debug\集成测试.obj
 c:\users\ywin\source\repos\image-processing\x64\debug\testpic.obj
+c:\users\ywin\source\repos\image-processing\x64\debug\machinelearning.obj
 c:\users\ywin\source\repos\image-processing\x64\debug\histogram.obj
 c:\users\ywin\source\repos\image-processing\x64\debug\feature.obj
 c:\users\ywin\source\repos\image-processing\x64\debug\contour.obj
@@ -14,6 +15,8 @@ c:\users\ywin\source\repos\image-processing\x64\debug\arithmetic.obj
 c:\users\ywin\source\repos\image-processing\x64\debug\testpic.exe
 c:\users\ywin\source\repos\image-processing\x64\debug\testpic.ilk
 c:\users\ywin\source\repos\image-processing\x64\debug\testpic.pdb
+c:\users\ywin\source\repos\image-processing\x64\debug\machinelearning.obj.enc
+c:\users\ywin\source\repos\image-processing\x64\debug\testpic.obj.enc
 c:\users\ywin\source\repos\image-processing\x64\debug\testpic.tlog\cl.command.1.tlog
 c:\users\ywin\source\repos\image-processing\x64\debug\testpic.tlog\cl.read.1.tlog
 c:\users\ywin\source\repos\image-processing\x64\debug\testpic.tlog\cl.write.1.tlog

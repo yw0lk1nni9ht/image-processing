@@ -64,7 +64,7 @@ void MachineLearning::SVM_test() {
 	Mat muban = imread("模板\\0\\0.jpg", 0);
 	int _rows = muban.rows;	//标准行
 	int _cols = muban.cols;	//标准列
-	int plus_num = 30;	//正样本数量
+	int plus_num = 90;	//正样本数量
 	int minus_num = 36;	//负样本数量
 	/*Mat targetData(plus_num, _rows*_cols, CV_32FC1);
 	Mat backData(minus_num, _rows*_cols, CV_32FC1);*/
@@ -85,9 +85,61 @@ void MachineLearning::SVM_test() {
 		train_label.push_back(0);
 	}
 
+	//7的模板，识别率不高，单独增加训练样本
+	for (int i = 0; i < 110; i++) {
+		Mat tmp = imread("模板\\7\\" + to_string(i) + ".jpg", 0);
+		tmp.rows = _rows;
+		tmp.cols = _cols;
+		//tmp.reshape(1, 1);
+		/*Mat _tmp = targetData.rowRange(i, i + 1);
+		_tmp = tmp.reshape(1, 1);*/
+		//tmp.copyTo(_tmp);
+		Mat _tmp;
+		tmp.convertTo(_tmp, CV_32FC1);
+		_tmp = _tmp.reshape(1, 1);
+		targetData.push_back(_tmp);
+		train_label.push_back(7);
+	}
+
+	//8的模板，识别率不高，单独增加训练样本
+	for (int i = 0; i < 140; i++) {
+		Mat tmp = imread("模板\\8\\" + to_string(i) + ".jpg", 0);
+		tmp.rows = _rows;
+		tmp.cols = _cols;
+		//tmp.reshape(1, 1);
+		/*Mat _tmp = targetData.rowRange(i, i + 1);
+		_tmp = tmp.reshape(1, 1);*/
+		//tmp.copyTo(_tmp);
+		Mat _tmp;
+		tmp.convertTo(_tmp, CV_32FC1);
+		_tmp = _tmp.reshape(1, 1);
+		targetData.push_back(_tmp);
+		train_label.push_back(8);
+	}
+
+	//9的模板，识别率不高，单独增加训练样本
+	for (int i = 0; i < 110; i++) {
+		Mat tmp = imread("模板\\9\\" + to_string(i) + ".jpg", 0);
+		tmp.rows = _rows;
+		tmp.cols = _cols;
+		//tmp.reshape(1, 1);
+		/*Mat _tmp = targetData.rowRange(i, i + 1);
+		_tmp = tmp.reshape(1, 1);*/
+		//tmp.copyTo(_tmp);
+		Mat _tmp;
+		tmp.convertTo(_tmp, CV_32FC1);
+		_tmp = _tmp.reshape(1, 1);
+		targetData.push_back(_tmp);
+		train_label.push_back(9);
+	}
+
 	//负样本
 	for (int i = 1; i < 10; i++) {
-		for (int j = 0; j < 18; j++) {
+		if (i == 8 || i==7 || i==9)
+		{
+			continue;
+		}
+		for (int j = 0; j < 103; j++) {
 			Mat tmp = imread("模板\\" + to_string(i) + "\\" + to_string(j) +".jpg", 0);
 			tmp.rows = _rows;
 			tmp.cols = _cols;
@@ -102,6 +154,7 @@ void MachineLearning::SVM_test() {
 			train_label.push_back(i);
 		}
 	}
+
 	vconcat(targetData, backData, train_data); //合并所有的样本点，作为训练数据
 	//train_label = Mat(plus_num + minus_num, 1, CV_32S, Scalar::all(1)); //初始化标注
 	//train_label = Mat(plus_num + minus_num, 1, CV_32F, Scalar::all(1)); //初始化标注
