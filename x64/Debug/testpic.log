@@ -1,6 +1,5 @@
 ﻿  testpic.cpp
-  集成测试.cpp
-c:\users\ywin\source\repos\image-processing\集成测试.cpp(171): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
-  正在生成代码...
-c:\users\ywin\source\repos\image-processing\testpic.cpp(244): warning C4715: “changestring”: 不是所有的控件路径都返回值
+c:\users\ywin\source\repos\image-processing\testpic.cpp(232): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+c:\users\ywin\source\repos\image-processing\testpic.cpp(283): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+c:\users\ywin\source\repos\image-processing\testpic.cpp(163): warning C4715: “changestring”: 不是所有的控件路径都返回值
   testpic.vcxproj -> C:\Users\ywin\source\repos\image-processing\x64\Debug\testpic.exe
