@@ -51,8 +51,12 @@
 
 	//区域分化更明显
 	//3.凸出所需区域
-	//Mat kernel = getStructuringElement(0, Size(10, 10));		//1000张样本
-	Mat kernel = getStructuringElement(0, Size(20, 20));		//other_invoke
+	/************************广东通用机打发票**********************************/
+	Mat kernel = getStructuringElement(0, Size(10, 10));		//1000张样本
+	/************************************************************************/
+	/*****************************另一种发票**********************************/
+	//Mat kernel = getStructuringElement(0, Size(50, 50));		//other_invoke
+	/************************************************************************/
 	dilate(test_src2, test_src2, kernel);
 	//imshow("2.4膨胀", test_src2);
 
@@ -70,6 +74,12 @@
 	//Rect Need;
 	for (int i= 0 ; i < contours.size()-1; i++) {
 		Rect a = boundingRect(contours[i]);
+		/********************第二种票据的筛选*****************************/
+		if (a.width > 450)
+		{
+			continue;
+		}
+		/***************************************************************/
 		if ((a.width * a.height) > Max)
 		{
 			Max = a.width * a.height;
@@ -137,7 +147,7 @@ void 集成测试::pichandle(Mat handle_src) {
 
 	for (int i = 0; i < contours.size() ; i++) {
 		Rect a = boundingRect(contours[i]);
-		if (a.area() > 100)
+		if (a.area() > 80)
 		{
 			rectangle(save, a, Scalar(255, 64, 64));
 			saved_contours.push_back(a);
