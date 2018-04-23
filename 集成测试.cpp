@@ -52,10 +52,10 @@
 	//区域分化更明显
 	//3.凸出所需区域
 	/************************广东通用机打发票**********************************/
-	//Mat kernel = getStructuringElement(0, Size(10, 10));		//1000张样本
+	Mat kernel = getStructuringElement(0, Size(10, 10));		//1000张样本
 	/************************************************************************/
 	/*****************************另一种发票**********************************/
-	Mat kernel = getStructuringElement(0, Size(50, 50));		//other_invoke
+	//Mat kernel = getStructuringElement(0, Size(50, 50));		//other_invoke
 	/************************************************************************/
 	dilate(test_src2, test_src2, kernel);
 	//imshow("2.4膨胀", test_src2);
