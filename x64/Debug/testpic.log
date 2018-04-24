@@ -1,9 +1,6 @@
 ﻿  testpic.cpp
-c:\users\administrator\source\repos\testpic\testpic.cpp(237): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
-c:\users\administrator\source\repos\testpic\testpic.cpp(291): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
-c:\users\administrator\source\repos\testpic\testpic.cpp(606): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
-  集成测试.cpp
-c:\users\administrator\source\repos\testpic\集成测试.cpp(182): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
-  正在生成代码...
-c:\users\administrator\source\repos\testpic\testpic.cpp(171): warning C4715: “changestring”: 不是所有的控件路径都返回值
-  testpic.vcxproj -> C:\Users\Administrator\source\repos\testpic\x64\Debug\testpic.exe
+c:\users\ywin\source\repos\image-processing\testpic.cpp(237): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+c:\users\ywin\source\repos\image-processing\testpic.cpp(291): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+c:\users\ywin\source\repos\image-processing\testpic.cpp(598): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+c:\users\ywin\source\repos\image-processing\testpic.cpp(171): warning C4715: “changestring”: 不是所有的控件路径都返回值
+  testpic.vcxproj -> C:\Users\ywin\source\repos\image-processing\x64\Debug\testpic.exe
