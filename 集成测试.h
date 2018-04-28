@@ -19,7 +19,7 @@ class 集成测试
 {
 public:
 	//获取票号区域并返回矩形
-	集成测试(Mat _src);
+	集成测试(Mat _src, int type);	//type决定2种票对应得内核选择
 		
 	//一系列处理获取号码框
 	void pichandle(Mat handle_src);

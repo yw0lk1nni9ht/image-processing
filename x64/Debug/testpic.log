@@ -1,7 +1,9 @@
-﻿  testpic.cpp
-c:\users\ywin\source\repos\image-processing\testpic.cpp(237): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
-c:\users\ywin\source\repos\image-processing\testpic.cpp(291): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
-c:\users\ywin\source\repos\image-processing\testpic.cpp(576): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
-c:\users\ywin\source\repos\image-processing\testpic.cpp(655): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
-c:\users\ywin\source\repos\image-processing\testpic.cpp(171): warning C4715: “changestring”: 不是所有的控件路径都返回值
+﻿  ReconizedImage.cpp
+c:\users\ywin\source\repos\image-processing\reconizedimage.cpp(152): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+c:\users\ywin\source\repos\image-processing\reconizedimage.cpp(206): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+c:\users\ywin\source\repos\image-processing\reconizedimage.cpp(314): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+c:\users\ywin\source\repos\image-processing\reconizedimage.cpp(368): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+c:\users\ywin\source\repos\image-processing\reconizedimage.cpp(646): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+c:\users\ywin\source\repos\image-processing\reconizedimage.cpp(724): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+c:\users\ywin\source\repos\image-processing\reconizedimage.cpp(81): warning C4715: “changestring”: 不是所有的控件路径都返回值
   testpic.vcxproj -> C:\Users\ywin\source\repos\image-processing\x64\Debug\testpic.exe

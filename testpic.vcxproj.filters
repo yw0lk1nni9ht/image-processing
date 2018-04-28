@@ -48,6 +48,9 @@
     <ClInclude Include="MachineLearning.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="ReconizedImage.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -81,6 +84,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="MachineLearning.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ReconizedImage.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

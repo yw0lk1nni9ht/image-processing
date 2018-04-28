@@ -1,7 +1,9 @@
 #include "stdafx.h"
 #include "MachineLearning.h"
+#include "opencv2/features2d/features2d.hpp"
 
 Mat change_predict(Mat src);
+Mat getFeature(Mat src);
 
 MachineLearning::MachineLearning()
 {
@@ -70,8 +72,8 @@ void MachineLearning::SVM_test() {
 	Mat backData(minus_num, _rows*_cols, CV_32FC1);*/
 
 	//0样本
-	for (int i = 0; i < 173; i++) {
-		Mat tmp = imread("模板\\0\\" + to_string(i) + ".jpg", 0);
+	for (int i = 1; i < 33; i++) {
+		Mat tmp = imread("模板\\0\\0 (" + to_string(i) + ").jpg", 0);
 		/*tmp.rows = _rows;
 		tmp.cols = _cols;*/
 		//tmp.reshape(1, 1);
@@ -103,66 +105,66 @@ void MachineLearning::SVM_test() {
 	}
 
 	//1的模板，识别率不高，单独增加训练样本
-	for (int i = 0; i < 177; i++) {
-		Mat tmp = imread("模板\\1\\" + to_string(i) + ".jpg", 0);
+	for (int i = 1; i < 33; i++) {
+		Mat tmp = imread("模板\\1\\1 (" + to_string(i) + ").jpg", 0);
 		Mat _tmp = change_predict(tmp);
 		targetData.push_back(_tmp);
 		train_label.push_back(1);
 	}
 	//2的模板，识别率不高，单独增加训练样本
-	for (int i = 0; i < 123; i++) {
-		Mat tmp = imread("模板\\2\\" + to_string(i) + ".jpg", 0);
+	for (int i = 1; i < 39; i++) {
+		Mat tmp = imread("模板\\2\\2 (" + to_string(i) + ").jpg", 0);
 		Mat _tmp = change_predict(tmp);
 		targetData.push_back(_tmp);
 		train_label.push_back(2);
 	}
 	//3的模板，识别率不高，单独增加训练样本
-	for (int i = 0; i < 164; i++) {
-		Mat tmp = imread("模板\\3\\" + to_string(i) + ".jpg", 0);
+	for (int i = 1; i < 36; i++) {
+		Mat tmp = imread("模板\\3\\3 (" + to_string(i) + ").jpg", 0);
 		Mat _tmp = change_predict(tmp);
 		targetData.push_back(_tmp);
 		train_label.push_back(3);
 	}
 	//4的模板，识别率不高，单独增加训练样本
-	for (int i = 0; i < 154; i++) {
-		Mat tmp = imread("模板\\4\\" + to_string(i) + ".jpg", 0);
+	for (int i = 1; i < 34; i++) {
+		Mat tmp = imread("模板\\4\\4 (" + to_string(i) + ").jpg", 0);
 		Mat _tmp = change_predict(tmp);
 		targetData.push_back(_tmp);
 		train_label.push_back(4);
 	}
 	//5的模板，识别率不高，单独增加训练样本
-	for (int i = 0; i < 122; i++) {
-		Mat tmp = imread("模板\\5\\" + to_string(i) + ".jpg", 0);
+	for (int i = 1; i < 29; i++) {
+		Mat tmp = imread("模板\\5\\5 (" + to_string(i) + ").jpg", 0);
 		Mat _tmp = change_predict(tmp);
 		targetData.push_back(_tmp);
 		train_label.push_back(5);
 	}
 	//6的模板，识别率不高，单独增加训练样本
-	for (int i = 0; i < 177; i++) {
-		Mat tmp = imread("模板\\6\\" + to_string(i) + ".jpg", 0);
+	for (int i = 1; i < 30; i++) {
+		Mat tmp = imread("模板\\6\\6 (" + to_string(i) + ").jpg", 0);
 		Mat _tmp = change_predict(tmp);
 		targetData.push_back(_tmp);
 		train_label.push_back(6);
 	}
 	//7的模板，识别率不高，单独增加训练样本
-	for (int i = 0; i < 196; i++) {
-		Mat tmp = imread("模板\\7\\" + to_string(i) + ".jpg", 0);
+	for (int i = 1; i < 8; i++) {
+		Mat tmp = imread("模板\\7\\7 (" + to_string(i) + ").jpg", 0);
 		Mat _tmp = change_predict(tmp);
 		targetData.push_back(_tmp);
 		train_label.push_back(7);
 	
 	}
 	//8的模板，识别率不高，单独增加训练样本
-	for (int i = 0; i < 178; i++) {
-		Mat tmp = imread("模板\\8\\" + to_string(i) + ".jpg", 0);
+	for (int i = 1; i < 32; i++) {
+		Mat tmp = imread("模板\\8\\8 (" + to_string(i) + ").jpg", 0);
 		Mat _tmp = change_predict(tmp);
 		targetData.push_back(_tmp);
 		train_label.push_back(8);
 	}
 
 	//9的模板，识别率不高，单独增加训练样本
-	for (int i = 0; i < 146; i++) {
-		Mat tmp = imread("模板\\9\\" + to_string(i) + ".jpg", 0);
+	for (int i = 1; i < 32; i++) {
+		Mat tmp = imread("模板\\9\\9 (" + to_string(i) + ").jpg", 0);
 		Mat _tmp = change_predict(tmp);
 		targetData.push_back(_tmp);
 		train_label.push_back(9);
@@ -192,6 +194,7 @@ void MachineLearning::SVM_test() {
 	//Ptr<SVM>svm = Algorithm::load<SVM>("svm.xml");
 	Ptr<SVM> svm = SVM::create();
 	svm->setType(100);	//100-104
+	//svm->setKernel(SVM::RBF);
 	svm->setKernel(SVM::LINEAR);
 	//svm->setTermCriteria(TermCriteria(TermCriteria::MAX_ITER, 100, 1e-6));
 	// 训练分类器
@@ -199,9 +202,9 @@ void MachineLearning::SVM_test() {
 	//svm->train(traindata);
 	cout << "开始训练" << endl;
 	svm->trainAuto(traindata);
-	cout << "保存文件" << endl;
+	///cout << "保存文件" << endl;
 	svm->save("svm.xml");
-	cout << "训练完成" << endl;
+	//cout << "训练完成" << endl;
 
 	#pragma region 10张图
 	Mat sampleMat_6 = imread("单字\\第11张：0.jpg", 0);
@@ -293,4 +296,14 @@ Mat change_predict(Mat src) {
 
 MachineLearning::~MachineLearning()
 {
+}
+
+Mat getFeature(Mat src22) {
+	Mat out_src;
+	vector<KeyPoint> keypoints;
+	Ptr<AgastFeatureDetector> testdetector = AgastFeatureDetector::create();
+	testdetector->detect(src22, keypoints);
+
+	drawKeypoints(src22, keypoints, out_src);
+	return out_src;
 }

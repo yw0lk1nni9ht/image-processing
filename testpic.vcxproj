@@ -157,6 +157,7 @@
     <ClInclude Include="Feature.h" />
     <ClInclude Include="Histogram.h" />
     <ClInclude Include="MachineLearning.h" />
+    <ClInclude Include="ReconizedImage.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="集成测试.h" />
@@ -170,6 +171,7 @@
     <ClCompile Include="Feature.cpp" />
     <ClCompile Include="Histogram.cpp" />
     <ClCompile Include="MachineLearning.cpp" />
+    <ClCompile Include="ReconizedImage.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
