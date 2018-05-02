@@ -18,27 +18,31 @@ void TY_invoke(Mat src, Ptr<SVM>svm);
 Mat pic_init(Mat src, int if_equal, Size blur_size, int _thresh, Size kernel_size);
 vector<Rect> Sort_by_X(Mat src, vector<vector<Point>> contours, int area, int reduce_x, int reduce_y, int width, int height);		//根据x坐标排序轮廓
 
-
+int i = 1;
 ReconizedImage::ReconizedImage()
 {
 }
 
-void ReconizedImage::Reconized(Mat src,int type, Ptr<SVM>svm)
+void ReconizedImage::Reconized(Mat src,int type)
 {
 	if (type == 0) {
 		//广东通用机打发票测试票	红字有底
+		Ptr<SVM>svm = Algorithm::load<SVM>("svm_0.xml");
 		GDTY_invoke(src, svm);		//1000张样本
 	}
 	else if (type == 1) {
 		//通用机打发票，难定位   红字没底
-		TY_invoke(src,  svm);
+		Ptr<SVM>svm = Algorithm::load<SVM>("svm_0.xml");
+		TY_invoke(src, svm);
 	}
 	else if (type == 2) {
 		//蓝字白底1
+		Ptr<SVM>svm = Algorithm::load<SVM>("svm_2.xml");
 		other_invoke(src, svm);
 	}
 	else if (type = 3) {
 		//蓝字白底扁
+		Ptr<SVM>svm = Algorithm::load<SVM>("svm_3.xml");
 		other_invoke2(src, svm);
 	}
 	
@@ -220,7 +224,7 @@ void other_invoke2(Mat src, Ptr<SVM>svm) {
 		test = newpic(Range(a.saved_contours[j].y, a.saved_contours[j].y + a.saved_contours[j].height), Range(a.saved_contours[j].x, a.saved_contours[j].x + a.saved_contours[j].width));
 		//namedWindow(to_string(j), 0);
 		//imshow(to_string(j), test);
-		//imwrite("单字_test_cs\\第"+to_string(*i)+"张："+ to_string(j) + ".jpg", test);
+		//imwrite("单字_type3蓝字白底扁\\第"+to_string(i)+"张："+ to_string(j) + ".jpg", test);
 		test.rows = 65;
 		test.cols = 32;
 		test.convertTo(test, CV_32FC1);
@@ -239,6 +243,7 @@ void other_invoke2(Mat src, Ptr<SVM>svm) {
 		cout << response2;
 	}
 	cout << endl;
+	i++;
 }
 
 void other_invoke(Mat src,  Ptr<SVM>svm) {
@@ -383,8 +388,10 @@ void other_invoke(Mat src,  Ptr<SVM>svm) {
 		//namedWindow(to_string(j), 0);
 		//imshow(to_string(j), test);
 		//imwrite("单字_test_cs\\第"+to_string(*i)+"张："+ to_string(j) + ".jpg", test);
-		test.rows = 65;
-		test.cols = 32;
+		/*test.rows = 65;
+		test.cols = 32;*/
+		test.rows = 16;
+		test.cols = 8;
 		test.convertTo(test, CV_32FC1);
 		test = test.reshape(1, 1);
 		Mat _tmp = Mat(1, 2500, CV_32FC1, Scalar(255, 255, 255));
@@ -392,13 +399,22 @@ void other_invoke(Mat src,  Ptr<SVM>svm) {
 		{
 			float* mubiao = _tmp.ptr<float>(i);
 			float* yangben = test.ptr<float>(i);
-			for (int j = 0; j < test.cols; j++)
+			for (int j2 = 0; j2 < test.cols; j2++)
 			{
-				mubiao[j] = yangben[j];
+				mubiao[j2] = yangben[j2];
 			}
 		}
 		float response2 = svm->predict(_tmp);  //进行预测，返回1或-1,返回类型为float
 		cout << response2;
+
+	/*	Mat resultq;
+		Point maxLoc;
+		double maxVal = 0;
+		svm->predict(_tmp, resultq);
+		minMaxLoc(resultq, NULL, &maxVal, NULL, &maxLoc);
+		cout << maxLoc.x << endl;*/
+
+		
 	}
 	cout << endl;
 }

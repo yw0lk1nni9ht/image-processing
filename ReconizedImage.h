@@ -12,6 +12,6 @@ class ReconizedImage
 public:
 	ReconizedImage();
 	~ReconizedImage();
-	void Reconized(Mat pic,int type, Ptr<SVM>svm);
+	void Reconized(Mat pic,int type);
 };
 
