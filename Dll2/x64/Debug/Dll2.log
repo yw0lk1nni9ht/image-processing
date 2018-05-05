@@ -1,0 +1,13 @@
+﻿  stdafx.cpp
+c1xx : warning C4199: C++/CLI、C++/CX 或 OpenMP 不支持两阶段名称查找；请使用 /Zc:twoPhase-
+  Dll2.cpp
+c1xx : warning C4199: C++/CLI、C++/CX 或 OpenMP 不支持两阶段名称查找；请使用 /Zc:twoPhase-
+  dllmain.cpp
+c1xx : warning C4199: C++/CLI、C++/CX 或 OpenMP 不支持两阶段名称查找；请使用 /Zc:twoPhase-
+  正在生成代码...
+C:\Users\ywin\source\repos\image-processing\Dll2\dllmain.cpp : warning C4747: 调用托管“DllMain”: 托管代码可能未运行在加载程序锁下，包括 DLL 入口点和从 DLL 入口点访问到的调用
+  .NETFramework,Version=v4.0.AssemblyAttributes.cpp
+c1xx : warning C4199: C++/CLI、C++/CX 或 OpenMP 不支持两阶段名称查找；请使用 /Zc:twoPhase-
+  Dll2.obj :托管的代码存在时 /DEBUG:FASTLINK 不受支持；正在重新启动与 /DEBUG:FULL 的链接
+    正在创建库 C:\Users\ywin\source\repos\image-processing\x64\Debug\Dll2.lib 和对象 C:\Users\ywin\source\repos\image-processing\x64\Debug\Dll2.exp
+  Dll2.vcxproj -> C:\Users\ywin\source\repos\image-processing\x64\Debug\Dll2.dll

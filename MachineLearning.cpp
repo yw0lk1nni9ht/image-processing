@@ -72,7 +72,7 @@ void MachineLearning::SVM_test() {
 	Mat backData(minus_num, _rows*_cols, CV_32FC1);*/
 
 	//0样本
-	for (int i = 1; i < 23; i++) {
+	for (int i = 1; i < 90; i++) {
 		Mat tmp = imread("模板3票\\0\\0 (" + to_string(i) + ").jpg", 0);
 		/*tmp.rows = _rows;
 		tmp.cols = _cols;*/
@@ -108,7 +108,7 @@ void MachineLearning::SVM_test() {
 	}
 
 	//1的模板，识别率不高，单独增加训练样本
-	for (int i = 1; i < 5; i++) {
+	for (int i = 1; i < 73; i++) {
 		Mat tmp = imread("模板3票\\1\\1 (" + to_string(i) + ").jpg", 0);
 		Mat _tmp = change_predict(tmp);
 		targetData.push_back(_tmp);
@@ -118,7 +118,7 @@ void MachineLearning::SVM_test() {
 		train_label.push_back(1);
 	}
 	//2的模板，识别率不高，单独增加训练样本
-	for (int i = 1; i < 18; i++) {
+	for (int i = 1; i < 78; i++) {
 		Mat tmp = imread("模板3票\\2\\2 (" + to_string(i) + ").jpg", 0);
 		Mat _tmp = change_predict(tmp);
 		targetData.push_back(_tmp);
@@ -128,7 +128,7 @@ void MachineLearning::SVM_test() {
 		train_label.push_back(2);
 	}
 	//3的模板，识别率不高，单独增加训练样本
-	for (int i = 1; i < 16; i++) {
+	for (int i = 1; i < 102; i++) {
 		Mat tmp = imread("模板3票\\3\\3 (" + to_string(i) + ").jpg", 0);
 		Mat _tmp = change_predict(tmp);
 		targetData.push_back(_tmp);
@@ -138,7 +138,7 @@ void MachineLearning::SVM_test() {
 		train_label.push_back(3);
 	}
 	//4的模板，识别率不高，单独增加训练样本
-	for (int i = 1; i < 18; i++) {
+	for (int i = 1; i < 103; i++) {
 		Mat tmp = imread("模板3票\\4\\4 (" + to_string(i) + ").jpg", 0);
 		Mat _tmp = change_predict(tmp);
 		targetData.push_back(_tmp);
@@ -148,8 +148,8 @@ void MachineLearning::SVM_test() {
 		train_label.push_back(4);
 	}
 	//5的模板，识别率不高，单独增加训练样本
-	for (int i = 1; i < 16; i++) {
-		Mat tmp = imread("模板2票\\5\\5 (" + to_string(i) + ").jpg", 0);
+	for (int i = 1; i < 46; i++) {
+		Mat tmp = imread("模板3票\\5\\5 (" + to_string(i) + ").jpg", 0);
 		Mat _tmp = change_predict(tmp);
 		targetData.push_back(_tmp);
 		/*float labels[10] = { 0,0,0,0,0,1,0,0,0,0 };
@@ -158,8 +158,8 @@ void MachineLearning::SVM_test() {
 		train_label.push_back(5);
 	}
 	//6的模板，识别率不高，单独增加训练样本
-	for (int i = 1; i < 33; i++) {
-		Mat tmp = imread("模板2票\\6\\6 (" + to_string(i) + ").jpg", 0);
+	for (int i = 1; i < 37; i++) {
+		Mat tmp = imread("模板3票\\6\\6 (" + to_string(i) + ").jpg", 0);
 		Mat _tmp = change_predict(tmp);
 		targetData.push_back(_tmp);
 		/*float labels[10] = { 0,0,0,0,0,0,1,0,0,0 };
@@ -168,7 +168,7 @@ void MachineLearning::SVM_test() {
 		train_label.push_back(6);
 	}
 	//7的模板，识别率不高，单独增加训练样本
-	for (int i = 1; i < 2; i++) {
+	for (int i = 1; i < 42; i++) {
 		Mat tmp = imread("模板3票\\7\\7 (" + to_string(i) + ").jpg", 0);
 		Mat _tmp = change_predict(tmp);
 		targetData.push_back(_tmp);
@@ -179,7 +179,7 @@ void MachineLearning::SVM_test() {
 	
 	}
 	//8的模板，识别率不高，单独增加训练样本
-	for (int i = 1; i < 16; i++) {
+	for (int i = 1; i < 73; i++) {
 		Mat tmp = imread("模板3票\\8\\8 (" + to_string(i) + ").jpg", 0);
 		Mat _tmp = change_predict(tmp);
 		targetData.push_back(_tmp);
@@ -190,7 +190,7 @@ void MachineLearning::SVM_test() {
 	}
 
 	//9的模板，识别率不高，单独增加训练样本
-	for (int i = 1; i < 2; i++) {
+	for (int i = 1; i < 68; i++) {
 		Mat tmp = imread("模板3票\\9\\9 (" + to_string(i) + ").jpg", 0);
 		Mat _tmp = change_predict(tmp);
 		targetData.push_back(_tmp);
@@ -234,7 +234,7 @@ void MachineLearning::SVM_test() {
 	Ptr<TrainData> traindata = TrainData::create(targetData, ROW_SAMPLE, train_label);
 	//svm->train(traindata);
 	cout << "开始训练" << endl;
-	svm->trainAuto(traindata);
+	svm->trainAuto(traindata,30);
 	svm->save("svm_3.xml");
 #pragma endregion
 

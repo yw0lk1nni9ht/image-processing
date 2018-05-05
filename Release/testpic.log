@@ -1,0 +1,6 @@
+﻿  testpic.cpp
+c:\users\ywin\source\repos\image-processing\testpic.cpp(57): error C2131: 表达式的计算结果不是常数
+  c:\users\ywin\source\repos\image-processing\testpic.cpp(57): note: 因读取超过生命周期的变量而失败
+  c:\users\ywin\source\repos\image-processing\testpic.cpp(57): note: 请参见“datalen”的用法
+c:\users\ywin\source\repos\image-processing\testpic.cpp(59): error C2039: “get”: 不是“cv::Mat”的成员
+  d:\program files\opencv\vs2017\install\include\opencv2\core\mat.hpp(780): note: 参见“cv::Mat”的声明

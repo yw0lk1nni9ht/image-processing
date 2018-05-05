@@ -1,0 +1,14 @@
+﻿  ReconizedImage.cpp
+c:\users\ywin\source\repos\image-processing\reconizedimage.cpp(156): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+c:\users\ywin\source\repos\image-processing\reconizedimage.cpp(210): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+c:\users\ywin\source\repos\image-processing\reconizedimage.cpp(319): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+c:\users\ywin\source\repos\image-processing\reconizedimage.cpp(373): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+c:\users\ywin\source\repos\image-processing\reconizedimage.cpp(662): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+c:\users\ywin\source\repos\image-processing\reconizedimage.cpp(740): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+  testpic.cpp
+  集成测试.cpp
+c:\users\ywin\source\repos\image-processing\集成测试.cpp(197): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+  正在生成代码
+  All 612 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  已完成代码的生成
+  testpic.vcxproj -> C:\Users\ywin\source\repos\image-processing\x64\Release\testpic.exe

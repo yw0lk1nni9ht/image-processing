@@ -32,7 +32,7 @@ void ReconizedImage::Reconized(Mat src,int type)
 	}
 	else if (type == 1) {
 		//通用机打发票，难定位   红字没底
-		Ptr<SVM>svm = Algorithm::load<SVM>("svm_0.xml");
+		Ptr<SVM>svm = Algorithm::load<SVM>("svm_1.xml");
 		TY_invoke(src, svm);
 	}
 	else if (type == 2) {
@@ -40,7 +40,7 @@ void ReconizedImage::Reconized(Mat src,int type)
 		Ptr<SVM>svm = Algorithm::load<SVM>("svm_2.xml");
 		other_invoke(src, svm);
 	}
-	else if (type = 3) {
+	else if (type == 3) {
 		//蓝字白底扁
 		Ptr<SVM>svm = Algorithm::load<SVM>("svm_3.xml");
 		other_invoke2(src, svm);
@@ -198,9 +198,9 @@ void other_invoke2(Mat src, Ptr<SVM>svm) {
 	//获取轮廓左上角坐标，重绘轮廓大小
 	for (int i = 0; i < _contours; i++) {
 		a.saved_contours[i].x -= 6;
-		a.saved_contours[i].y -= 6;
-		a.saved_contours[i].width = 35;
-		a.saved_contours[i].height = 65;
+		a.saved_contours[i].y -= 3;
+		a.saved_contours[i].width = 39;
+		a.saved_contours[i].height = 60;
 	}
 
 
@@ -225,8 +225,8 @@ void other_invoke2(Mat src, Ptr<SVM>svm) {
 		//namedWindow(to_string(j), 0);
 		//imshow(to_string(j), test);
 		//imwrite("单字_type3蓝字白底扁\\第"+to_string(i)+"张："+ to_string(j) + ".jpg", test);
-		test.rows = 65;
-		test.cols = 32;
+		//test.rows = 65;
+		//test.cols = 32;
 		test.convertTo(test, CV_32FC1);
 		test = test.reshape(1, 1);
 		Mat _tmp = Mat(1, 2500, CV_32FC1, Scalar(255, 255, 255));
@@ -388,10 +388,10 @@ void other_invoke(Mat src,  Ptr<SVM>svm) {
 		//namedWindow(to_string(j), 0);
 		//imshow(to_string(j), test);
 		//imwrite("单字_test_cs\\第"+to_string(*i)+"张："+ to_string(j) + ".jpg", test);
-		/*test.rows = 65;
-		test.cols = 32;*/
-		test.rows = 16;
-		test.cols = 8;
+		//test.rows = 65;
+		//test.cols = 32;
+		//test.rows = 16;
+		//test.cols = 8;
 		test.convertTo(test, CV_32FC1);
 		test = test.reshape(1, 1);
 		Mat _tmp = Mat(1, 2500, CV_32FC1, Scalar(255, 255, 255));

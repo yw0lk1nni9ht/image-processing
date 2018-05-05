@@ -77,11 +77,13 @@
 	
 	int Max  = 0;
 	//Rect Need;
-	for (int i= 0 ; i < contours.size()-1; i++) {
+	for (int i= 0 ; i < contours.size(); i++) {
 		Rect a = boundingRect(contours[i]);
 		if (type == 3)
 		{
 			if (a.width > 500)
+				continue;
+			if (a.y < test_dst.rows*0.25 || a.y>test_dst.rows*0.75)
 				continue;
 		}
 		/********************第二种票据的筛选*****************************/

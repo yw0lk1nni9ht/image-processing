@@ -1,0 +1,55 @@
+﻿  stdafx.cpp
+c1xx : warning C4199: C++/CLI、C++/CX 或 OpenMP 不支持两阶段名称查找；请使用 /Zc:twoPhase-
+  dll.cpp
+c1xx : warning C4199: C++/CLI、C++/CX 或 OpenMP 不支持两阶段名称查找；请使用 /Zc:twoPhase-
+c:\users\ywin\source\repos\image-processing\dll1\dll.cpp(199): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+c:\users\ywin\source\repos\image-processing\dll1\dll.cpp(253): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+c:\users\ywin\source\repos\image-processing\dll1\dll.cpp(361): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+c:\users\ywin\source\repos\image-processing\dll1\dll.cpp(415): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+c:\users\ywin\source\repos\image-processing\dll1\dll.cpp(717): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+c:\users\ywin\source\repos\image-processing\dll1\dll.cpp(795): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+  dllmain.cpp
+c1xx : warning C4199: C++/CLI、C++/CX 或 OpenMP 不支持两阶段名称查找；请使用 /Zc:twoPhase-
+  集成测试.cpp
+c1xx : warning C4199: C++/CLI、C++/CX 或 OpenMP 不支持两阶段名称查找；请使用 /Zc:twoPhase-
+c:\users\ywin\source\repos\image-processing\dll1\集成测试.cpp(197): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+  正在生成代码...
+d:\program files\opencv\build\include\opencv2\core\cvstd.hpp(575): warning C4793: “cv::String::String”: 编译为本机的函数:
+  	托管代码中发现一个不受支持的内部函数
+d:\program files\opencv\build\include\opencv2\core\mat.inl.hpp(482): warning C4793: “cv::Mat::Mat”: 编译为本机的函数:
+  	托管代码中发现一个不受支持的内部函数
+d:\program files\opencv\build\include\opencv2\core\mat.inl.hpp(803): warning C4793: “cv::Mat::release”: 编译为本机的函数:
+  	托管代码中发现一个不受支持的内部函数
+d:\program files\opencv\build\include\opencv2\core\mat.inl.hpp(2118): warning C4793: “cv::SparseMat::addref”: 编译为本机的函数:
+  	托管代码中发现一个不受支持的内部函数
+d:\program files\opencv\build\include\opencv2\core\mat.inl.hpp(3718): warning C4793: “cv::UMat::addref”: 编译为本机的函数:
+  	托管代码中发现一个不受支持的内部函数
+d:\program files\opencv\build\include\opencv2\core\ptr.inl.hpp(67): warning C4793: “cv::detail::PtrOwner::incRef”: 编译为本机的函数:
+  	托管代码中发现一个不受支持的内部函数
+d:\program files\opencv\build\include\opencv2\core\ptr.inl.hpp(72): warning C4793: “cv::detail::PtrOwner::decRef”: 编译为本机的函数:
+  	托管代码中发现一个不受支持的内部函数
+C:\Users\ywin\source\repos\image-processing\Dll1\dllmain.cpp : warning C4747: 调用托管“DllMain”: 托管代码可能未运行在加载程序锁下，包括 DLL 入口点和从 DLL 入口点访问到的调用
+d:\program files\opencv\build\include\opencv2\core\cvstd.hpp(575): warning C4793: “cv::String::String”: 编译为本机的函数:
+  	托管代码中发现一个不受支持的内部函数
+d:\program files\opencv\build\include\opencv2\core\mat.inl.hpp(482): warning C4793: “cv::Mat::Mat”: 编译为本机的函数:
+  	托管代码中发现一个不受支持的内部函数
+c:\users\ywin\source\repos\image-processing\dll1\dll.cpp(128): warning C4715: “changestring”: 不是所有的控件路径都返回值
+c:\users\ywin\source\repos\image-processing\dll1\dll.cpp(48): warning C4172: 返回局部变量或临时变量的地址: result
+d:\program files\opencv\build\include\opencv2\core\mat.inl.hpp(803): warning C4793: “cv::Mat::release”: 编译为本机的函数:
+  	托管代码中发现一个不受支持的内部函数
+d:\program files\opencv\build\include\opencv2\core\mat.inl.hpp(2118): warning C4793: “cv::SparseMat::addref”: 编译为本机的函数:
+  	托管代码中发现一个不受支持的内部函数
+d:\program files\opencv\build\include\opencv2\core\mat.inl.hpp(3718): warning C4793: “cv::UMat::addref”: 编译为本机的函数:
+  	托管代码中发现一个不受支持的内部函数
+d:\program files\opencv\build\include\opencv2\core\ptr.inl.hpp(67): warning C4793: “cv::detail::PtrOwner::incRef”: 编译为本机的函数:
+  	托管代码中发现一个不受支持的内部函数
+d:\program files\opencv\build\include\opencv2\core\ptr.inl.hpp(72): warning C4793: “cv::detail::PtrOwner::decRef”: 编译为本机的函数:
+  	托管代码中发现一个不受支持的内部函数
+d:\program files\opencv\build\include\opencv2\core\cvstd.hpp(657): warning C4793: “cv::String::operator=”: 编译为本机的函数:
+  	托管代码中发现一个不受支持的内部函数
+  .NETFramework,Version=v4.0.AssemblyAttributes.cpp
+c1xx : warning C4199: C++/CLI、C++/CX 或 OpenMP 不支持两阶段名称查找；请使用 /Zc:twoPhase-
+  dll.obj :托管的代码存在时 /DEBUG:FASTLINK 不受支持；正在重新启动与 /DEBUG:FULL 的链接
+    正在创建库 C:\Users\ywin\source\repos\image-processing\x64\Debug\Dll1.lib 和对象 C:\Users\ywin\source\repos\image-processing\x64\Debug\Dll1.exp
+dll.obj : warning LNK4248: 无法解析 typeref 标记(01000014)(为“CvFileStorage”)；映像可能无法运行
+  Dll1.vcxproj -> C:\Users\ywin\source\repos\image-processing\x64\Debug\Dll1.dll
